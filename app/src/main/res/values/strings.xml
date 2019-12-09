@@ -5,4 +5,5 @@
     <integer name="homePrice">400000</integer>
     <string name="homePriceLabel">Home Price:</string>
     <string name="downPaymentLabel">Down Payment:</string>
+    <string name="downPaymentAmount">NA</string>
 </resources>

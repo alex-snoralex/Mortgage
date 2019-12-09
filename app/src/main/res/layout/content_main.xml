@@ -73,8 +73,8 @@
 
     <Spinner
         android:id="@+id/downPaymentSpinner"
-        android:layout_width="88dp"
-        android:layout_height="44dp"
+        android:layout_width="99dp"
+        android:layout_height="41dp"
         android:layout_marginStart="165dp"
         android:layout_marginLeft="165dp"
         android:layout_marginTop="151dp"
@@ -97,5 +97,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
+
+    <TextView
+        android:id="@+id/downPaymentAmount"
+        android:layout_width="110dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="285dp"
+        android:layout_marginLeft="285dp"
+        android:layout_marginTop="151dp"
+        android:gravity="center"
+        android:text="@string/downPaymentAmount"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
