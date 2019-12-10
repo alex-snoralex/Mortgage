@@ -6,4 +6,5 @@
     <string name="homePriceLabel">Home Price:</string>
     <string name="downPaymentLabel">Down Payment:</string>
     <string name="downPaymentAmount">NA</string>
+    <string name="bottomPic">nothing right now</string>
 </resources>
