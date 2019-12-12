@@ -3,11 +3,12 @@ package com.example.mortgage
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ArrayAdapter
-import android.widget.Spinner
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+import java.math.BigDecimal
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +23,10 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
+        val homePriceText: EditText = findViewById(R.id.homePrice)
         val spinner: Spinner = findViewById(R.id.downPaymentSpinner)
+        val downPaymentAmount: TextView = findViewById(R.id.downPaymentAmount)
+
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             this,
@@ -33,12 +37,27 @@ class MainActivity : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner
             spinner.adapter = adapter
-            val spinnerValue = spinner.getSelectedItem() as String
-
-//            val spinner: Spinner = findViewById(R.id.spinner)
-//            spinner.onItemSelectedListener = this
-
         }
+
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selection = parent?.getItemAtPosition(position).toString()
+//                viewModel.updateSelection(selection as String)
+                calculateDownPayment(selection)
+            }
+        }
+    }
+
+    fun calculateDownPayment(percentDown : String){
+        val percentDownCleaned = percentDown.replace("%", "").toBigDecimal()
+        val homePriceText: EditText = findViewById(R.id.homePrice)
+        val downPaymentAmount: TextView = findViewById(R.id.downPaymentAmount)
+        val homePriceAValue = homePriceText.text.toString().toBigDecimal()
+        val downPayment = percentDownCleaned * homePriceAValue / BigDecimal(100)
+        downPaymentAmount.text = downPayment.toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -56,6 +75,4 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-
 }

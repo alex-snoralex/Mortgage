@@ -32,6 +32,7 @@
         android:ems="10"
         android:fadingEdge="horizontal"
         android:gravity="end"
+        android:hint="Enter the price of the home"
         android:inputType="number"
         android:text="@integer/homePrice"
         android:textStyle="bold"
