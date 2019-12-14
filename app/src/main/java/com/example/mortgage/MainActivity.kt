@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private var homePrice: EditText? = null
     private var downPaymentAmount: TextView? = null
     private var downPaymentSpinner: Spinner? = null
+    private var loanLengthSpinner: Spinner? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         homePrice = findViewById(R.id.homePrice)
         downPaymentAmount = findViewById(R.id.downPaymentAmount)
         downPaymentSpinner = findViewById(R.id.downPaymentSpinner)
+        loanLengthSpinner = findViewById(R.id.loanLengthSpinner)
 
 
         fab.setOnClickListener { view ->
@@ -34,34 +36,31 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.downPaymentOptions,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
+        ArrayAdapter.createFromResource(this, R.array.downPaymentOptions, android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) // Specify the layout to use when the list of choices appears
+            downPaymentSpinner?.adapter = adapter // Apply the adapter to the spinner
+        }
+
+        ArrayAdapter.createFromResource(this, R.array.loanLengthSpinner, android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            downPaymentSpinner?.adapter = adapter
+            loanLengthSpinner?.adapter = adapter
         }
 
         downPaymentSpinner?.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Do nothing
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                val selection = parent?.getItemAtPosition(position).toString()
-//                viewModel.updateSelection(selection as String)
                 calculateDownPayment()
             }
         }
 
+        loanLengthSpinner?.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {}
+        }
+
         homePrice?.addTextChangedListener( object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {}
-
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 calculateDownPayment()
             }

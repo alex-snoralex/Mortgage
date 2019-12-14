@@ -1,10 +1,26 @@
 <resources>
+    //Header
     <string name="app_name">Mortgage</string>
     <string name="action_settings">Settings</string>
     <string name="mortgage_calculator">Mortgage Calculator</string>
-    <integer name="homePrice">400000</integer>
+
+    // Home Price
     <string name="homePriceLabel">Home Price:</string>
+    <integer name="homePrice">400000</integer>
+
+    // Down Payment
     <string name="downPaymentLabel">Down Payment:</string>
     <string name="downPaymentAmount">NA</string>
-    <string name="bottomPic">nothing right now</string>
+
+    // Length of Loan
+    <string name="loanLengthLabel">Length of loan in years:</string>
+    <string-array name="loanLengthSpinner">
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+    </string-array>
+
+
 </resources>
