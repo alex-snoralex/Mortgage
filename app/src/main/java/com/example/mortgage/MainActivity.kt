@@ -1,6 +1,8 @@
 package com.example.mortgage
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,19 +15,24 @@ import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() {
 
+    private var homePrice: EditText? = null
+    private var downPaymentAmount: TextView? = null
+    private var downPaymentSpinner: Spinner? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        homePrice = findViewById(R.id.homePrice)
+        downPaymentAmount = findViewById(R.id.downPaymentAmount)
+        downPaymentSpinner = findViewById(R.id.downPaymentSpinner)
+
+
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
-
-        val homePriceText: EditText = findViewById(R.id.homePrice)
-        val spinner: Spinner = findViewById(R.id.downPaymentSpinner)
-        val downPaymentAmount: TextView = findViewById(R.id.downPaymentAmount)
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
@@ -36,28 +43,36 @@ class MainActivity : AppCompatActivity() {
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner
-            spinner.adapter = adapter
+            downPaymentSpinner?.adapter = adapter
         }
 
-        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+        downPaymentSpinner?.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Do nothing
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val selection = parent?.getItemAtPosition(position).toString()
+//                val selection = parent?.getItemAtPosition(position).toString()
 //                viewModel.updateSelection(selection as String)
-                calculateDownPayment(selection)
+                calculateDownPayment()
             }
         }
+
+        homePrice?.addTextChangedListener( object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {}
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                calculateDownPayment()
+            }
+        })
     }
 
-    fun calculateDownPayment(percentDown : String){
-        val percentDownCleaned = percentDown.replace("%", "").toBigDecimal()
-        val homePriceText: EditText = findViewById(R.id.homePrice)
-        val downPaymentAmount: TextView = findViewById(R.id.downPaymentAmount)
-        val homePriceAValue = homePriceText.text.toString().toBigDecimal()
-        val downPayment = percentDownCleaned * homePriceAValue / BigDecimal(100)
-        downPaymentAmount.text = downPayment.toString()
+    fun calculateDownPayment(){
+        val percentDown = downPaymentSpinner?.selectedItem.toString().replace("%", "").toBigDecimal()
+        val homePriceAValue = homePrice?.text.toString().toBigDecimal()
+        val downPayment = percentDown * homePriceAValue / BigDecimal(100)
+        downPaymentAmount?.text = downPayment.toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
