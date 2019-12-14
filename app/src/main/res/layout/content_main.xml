@@ -124,13 +124,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
+            android:id="@+id/loanLengthRow"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="39dp"
             android:baselineAligned="false">
 
             <TextView
                 android:id="@+id/loanLengthLabel"
-                android:layout_width="321dp"
+                android:layout_width="230dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/loanLengthLabel"
@@ -138,22 +139,61 @@
 
             <Spinner
                 android:id="@+id/loanLengthSpinner"
-                android:layout_width="91dp"
+                android:layout_width="126dp"
                 android:layout_height="34dp"
                 android:spinnerMode="dropdown" />
         </TableRow>
 
         <TableRow
+            android:id="@+id/aprRow"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/aprLabel"
+                android:layout_width="285dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/aprLabel"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/apr"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:text="@string/apr"
+                android:autofillHints="" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/mortgageLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:text="@string/mortgageLabel"
+                android:gravity="center" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/mortgageCalculation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/mortgageCalculation"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </TableRow>
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

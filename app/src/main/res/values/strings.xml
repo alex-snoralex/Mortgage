@@ -22,5 +22,12 @@
         <item>30</item>
     </string-array>
 
+    // APR
+    <string name="aprLabel">APR:</string>
+    <string name="apr">4.00</string>
+
+    // Mortgage Calculation
+    <string name="mortgageLabel">Monthly mortgage payment is:</string>
+    <string name="mortgageCalculation">NA</string>
 
 </resources>
