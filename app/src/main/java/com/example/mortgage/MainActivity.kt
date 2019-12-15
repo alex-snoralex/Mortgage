@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         val homePriceAValue = homePrice?.text.toString().toBigDecimal()
         val downPayment = downPaymentAmount?.text.toString().toBigDecimal()
         val loanLengthInMonths = loanLengthSpinner?.selectedItem.toString().toInt()* 12
-        val aprInMonths = apr?.text.toString().toBigDecimal()* BigDecimal(12)/ BigDecimal(100)
+        val aprInMonths = apr?.text.toString().toBigDecimal().divide(1200.toBigDecimal(), 5, RoundingMode.HALF_EVEN)
 
         val mortgagePayment = (homePriceAValue-downPayment) *
                 (aprInMonths * ( BigDecimal.ONE + aprInMonths).pow(loanLengthInMonths)) /
