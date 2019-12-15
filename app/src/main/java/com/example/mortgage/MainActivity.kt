@@ -88,9 +88,9 @@ class MainActivity : AppCompatActivity() {
 
     fun calculateDownPayment(){
         val homePriceAValue = homePrice?.text.toString().toBigDecimal()
-        val percentDown = downPaymentSpinner?.selectedItem.toString().replace("%", "").toBigDecimal()
+        val percentDown = getBigDecimal(downPaymentSpinner?.selectedItem.toString())
         val downPayment = percentDown * homePriceAValue / BigDecimal(100)
-        downPaymentAmount?.text = downPayment.toString()
+        downPaymentAmount?.text = setDollarFormat(downPayment)
     }
 
     fun calculateMortgagePayment(){
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
          * where D11 = total payments in months, D12 = APR in months
         */
         val homePriceAValue = homePrice?.text.toString().toBigDecimal()
-        val downPayment = downPaymentAmount?.text.toString().toBigDecimal()
+        val downPayment = getBigDecimal(downPaymentAmount?.text.toString())
         val loanLengthInMonths = loanLengthSpinner?.selectedItem.toString().toInt()* 12
         val aprInMonths = apr?.text.toString().toBigDecimal().divide(1200.toBigDecimal(), 5, RoundingMode.HALF_EVEN)
 
@@ -106,7 +106,16 @@ class MainActivity : AppCompatActivity() {
                 (aprInMonths * ( BigDecimal.ONE + aprInMonths).pow(loanLengthInMonths)) /
                 ((BigDecimal.ONE + aprInMonths).pow(loanLengthInMonths)- BigDecimal.ONE)
 
-        mortgageCalculation?.text = mortgagePayment.setScale(2, RoundingMode.HALF_EVEN).toString()
+        mortgageCalculation?.text = setDollarFormat(mortgagePayment)
+    }
+
+    fun setDollarFormat(amount: BigDecimal): String {
+        return java.text.NumberFormat.getCurrencyInstance().format(amount)
+    }
+
+    fun getBigDecimal(rawValue: String): BigDecimal{
+        return rawValue.replace("$", "")
+            .replace(",", "").replace("%","").toBigDecimal()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

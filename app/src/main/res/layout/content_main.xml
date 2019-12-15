@@ -43,6 +43,7 @@
                 android:id="@+id/homePriceLabel"
                 android:layout_width="148dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:lineSpacingExtra="18sp"
                 android:text="@string/homePriceLabel"
@@ -54,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:fadingEdge="horizontal"
-                android:gravity="end"
+                android:gravity="center"
                 android:hint="Enter the price of the home"
                 android:inputType="number"
                 android:text="@integer/homePrice"
@@ -71,7 +72,7 @@
                 android:id="@+id/downPaymentLabel"
                 android:layout_width="172dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_gravity="center"
                 android:lineSpacingExtra="18sp"
                 android:text="@string/downPaymentLabel"
                 android:textSize="18sp" />
@@ -80,6 +81,7 @@
                 android:id="@+id/downPaymentSpinner"
                 android:layout_width="99dp"
                 android:layout_height="41dp"
+                android:layout_gravity="center"
                 android:spinnerMode="dropdown"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +96,7 @@
 
             <TextView
                 android:id="@+id/downPaymentAmount"
-                android:layout_width="110dp"
+                android:layout_width="168dp"
                 android:layout_height="41dp"
                 android:gravity="center"
                 android:text="@string/downPaymentAmount"
@@ -113,6 +115,7 @@
                 android:id="@+id/loanLengthLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/loanLengthLabel"
                 android:textSize="18sp" />
@@ -121,6 +124,7 @@
                 android:id="@+id/loanLengthSpinner"
                 android:layout_width="126dp"
                 android:layout_height="34dp"
+                android:layout_gravity="center"
                 android:spinnerMode="dropdown" />
         </TableRow>
 
@@ -157,6 +161,7 @@
                 android:id="@+id/mortgageLabel"
                 android:layout_width="218dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:baselineAligned="false"
                 android:gravity="center"
                 android:text="@string/mortgageLabel" />
