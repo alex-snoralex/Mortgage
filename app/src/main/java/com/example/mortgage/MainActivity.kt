@@ -79,7 +79,11 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {}
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                calculateMortgagePayment()
+                var curr = s.toString().toBigDecimal()
+                if (curr.compareTo(BigDecimal.ZERO) == 0)
+                    apr?.setError("Cannot have zero APR (Unfortunately)")
+                else
+                    calculateMortgagePayment()
             }
         })
 
