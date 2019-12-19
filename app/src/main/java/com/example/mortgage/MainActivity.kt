@@ -79,14 +79,9 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {}
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                var curr = s.toString().toBigDecimal()
-                if (curr.compareTo(BigDecimal.ZERO) == 0)
-                    apr?.setError("Cannot have zero APR (Unfortunately)")
-                else
-                    calculateMortgagePayment()
+                calculateMortgagePayment()
             }
         })
-
 
     }
 
@@ -101,6 +96,11 @@ class MainActivity : AppCompatActivity() {
         /** Formula =(B2-B8) * (D12*(1+D12)^(D11)) / (((1+D12)^D11)-1)
          * where D11 = total payments in months, D12 = APR in months
         */
+        if (!isAprValid()){
+            apr?.error = "Cannot have zero APR (Unfortunately)"
+            return
+        }
+
         val homePriceAValue = homePrice?.text.toString().toBigDecimal()
         val downPayment = getBigDecimal(downPaymentAmount?.text.toString())
         val loanLengthInMonths = loanLengthSpinner?.selectedItem.toString().toInt()* 12
@@ -113,11 +113,20 @@ class MainActivity : AppCompatActivity() {
         mortgageCalculation?.text = setDollarFormat(mortgagePayment)
     }
 
-    fun setDollarFormat(amount: BigDecimal): String {
+    private fun isAprValid(): Boolean {
+        val aprValue = apr?.text.toString()
+        if (aprValue == "" || aprValue == "." ||
+            aprValue.toBigDecimal().compareTo(BigDecimal.ZERO) == 0)
+            return false
+
+        return true
+    }
+
+    private fun setDollarFormat(amount: BigDecimal): String {
         return java.text.NumberFormat.getCurrencyInstance().format(amount)
     }
 
-    fun getBigDecimal(rawValue: String): BigDecimal{
+    private fun getBigDecimal(rawValue: String): BigDecimal{
         return rawValue.replace("$", "")
             .replace(",", "").replace("%","").toBigDecimal()
     }
