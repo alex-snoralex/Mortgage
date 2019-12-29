@@ -13,14 +13,9 @@
     <string name="downPaymentAmount">NA</string>
 
     // Length of Loan
-    <string name="loanLengthLabel">Length of loan in years:</string>
-    <string-array name="loanLengthSpinner">
-        <item>10</item>
-        <item>15</item>
-        <item>20</item>
-        <item>25</item>
-        <item>30</item>
-    </string-array>
+    <string name="loanLengthLabel">Length of loan:</string>
+    <string name="radio15Button">15 years</string>
+    <string name="radio30Button">30 years</string>
 
     // APR
     <string name="aprLabel">APR:</string>

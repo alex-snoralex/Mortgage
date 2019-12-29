@@ -17,23 +17,23 @@ import java.math.RoundingMode
 class MainActivity : AppCompatActivity() {
 
     /**
-     * @TODO: Change Loan length to radio button select of 15 or 30 years
-     * @TODO: Make 30 year loan length default
-     * @TODO: Set default Downpayment to 20%
      * @TODO: Update color scheme
      * @TODO: Update Icons
      * @TODO: Add commas and $ to Home Price
      * @TODO: Remove 'Mortgage Calculator' text and add to heading
-     * @TODO: Do something with 'Settings'
+     * @TODO: lose focus on number input should work
      * @TODO: Plus button to add HOA, Mortgage insurance, Etc.
-     * @TODO: Fix landscape mode
      * @TODO: Add email messaging
+     * @TODO: Clean ALL warnings
+     * @TODO: Fix landscape mode
+     * @TODO: Do something with 'Settings' in heading
      */
 
     private var homePrice: EditText? = null
     private var downPaymentSpinner: Spinner? = null
     private var downPaymentAmount: TextView? = null
-    private var loanLengthSpinner: Spinner? = null
+    private var loanLengthRadioGroup: RadioGroup? = null
+    private var loanLength = 30
     private var apr: EditText? = null
     private var mortgageCalculation: TextView? = null
 
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         homePrice = findViewById(R.id.homePrice)
         downPaymentSpinner = findViewById(R.id.downPaymentSpinner)
         downPaymentAmount = findViewById(R.id.downPaymentAmount)
-        loanLengthSpinner = findViewById(R.id.loanLengthSpinner)
+        loanLengthRadioGroup = findViewById(R.id.loanLengthRadioGroup)
         apr = findViewById(R.id.apr)
         mortgageCalculation = findViewById(R.id.mortgageCalculation)
 
@@ -58,11 +58,7 @@ class MainActivity : AppCompatActivity() {
         ArrayAdapter.createFromResource(this, R.array.downPaymentOptions, android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) // Specify the layout to use when the list of choices appears
             downPaymentSpinner?.adapter = adapter // Apply the adapter to the spinner
-        }
-
-        ArrayAdapter.createFromResource(this, R.array.loanLengthSpinner, android.R.layout.simple_spinner_item).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            loanLengthSpinner?.adapter = adapter
+            downPaymentSpinner?.setSelection(adapter.getPosition("20%"))
         }
 
         homePrice?.addTextChangedListener( object : TextWatcher {
@@ -82,11 +78,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        loanLengthSpinner?.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                calculateMortgagePayment()
+        loanLengthRadioGroup?.setOnCheckedChangeListener { _, checkedId ->
+            loanLength = when (findViewById<RadioButton>(checkedId).tag.toString() == "15"){
+                true -> 15
+                false -> 30
             }
+            calculateMortgagePayment()
         }
 
         apr?.addTextChangedListener( object : TextWatcher {
@@ -110,14 +107,14 @@ class MainActivity : AppCompatActivity() {
         /** Formula =(B2-B8) * (D12*(1+D12)^(D11)) / (((1+D12)^D11)-1)
          * where D11 = total payments in months, D12 = APR in months
         */
-        if (!isAprValid()){
-            apr?.error = "Cannot have zero APR (Unfortunately)"
+        if (!isAprValid(apr?.text.toString())){
+            apr?.error = "Cannot have zero APR"
             return
         }
 
         val homePriceAValue = homePrice?.text.toString().toBigDecimal()
         val downPayment = getBigDecimal(downPaymentAmount?.text.toString())
-        val loanLengthInMonths = loanLengthSpinner?.selectedItem.toString().toInt()* 12
+        val loanLengthInMonths = loanLength * 12
         val aprInMonths = apr?.text.toString().toBigDecimal().divide(1200.toBigDecimal(), 5, RoundingMode.HALF_EVEN)
 
         val mortgagePayment = (homePriceAValue-downPayment) *
@@ -125,24 +122,6 @@ class MainActivity : AppCompatActivity() {
                 ((BigDecimal.ONE + aprInMonths).pow(loanLengthInMonths)- BigDecimal.ONE)
 
         mortgageCalculation?.text = setDollarFormat(mortgagePayment)
-    }
-
-    private fun isAprValid(): Boolean {
-        val aprValue = apr?.text.toString()
-        if (aprValue == "" || aprValue == "." ||
-            aprValue.toBigDecimal().compareTo(BigDecimal.ZERO) == 0)
-            return false
-
-        return true
-    }
-
-    private fun setDollarFormat(amount: BigDecimal): String {
-        return java.text.NumberFormat.getCurrencyInstance().format(amount)
-    }
-
-    private fun getBigDecimal(rawValue: String): BigDecimal{
-        return rawValue.replace("$", "")
-            .replace(",", "").replace("%","").toBigDecimal()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
