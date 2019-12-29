@@ -16,6 +16,20 @@ import java.math.RoundingMode
 
 class MainActivity : AppCompatActivity() {
 
+    /**
+     * @TODO: Change Loan length to radio button select of 15 or 30 years
+     * @TODO: Make 30 year loan length default
+     * @TODO: Set default Downpayment to 20%
+     * @TODO: Update color scheme
+     * @TODO: Update Icons
+     * @TODO: Add commas and $ to Home Price
+     * @TODO: Remove 'Mortgage Calculator' text and add to heading
+     * @TODO: Do something with 'Settings'
+     * @TODO: Plus button to add HOA, Mortgage insurance, Etc.
+     * @TODO: Fix landscape mode
+     * @TODO: Add email messaging
+     */
+
     private var homePrice: EditText? = null
     private var downPaymentSpinner: Spinner? = null
     private var downPaymentAmount: TextView? = null
