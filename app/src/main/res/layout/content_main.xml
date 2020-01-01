@@ -22,12 +22,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
-            android:id="@+id/homePriceRow"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/homePriceLabel"
                 android:layout_width="148dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -43,7 +41,8 @@
                 android:ems="10"
                 android:fadingEdge="horizontal"
                 android:gravity="center"
-                android:hint="Enter the price of the home"
+                android:hint="@string/homePriceHint"
+                android:autofillHints="@string/homePriceHint"
                 android:inputType="number"
                 android:text="@integer/homePrice"
                 android:textStyle="bold"
@@ -51,12 +50,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/downPaymentRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/downPaymentLabel"
                 android:layout_width="172dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -77,7 +74,6 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/downPaymentAmountRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal">
@@ -95,13 +91,11 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/loanLengthRow"
             android:layout_width="match_parent"
             android:layout_height="39dp"
             android:baselineAligned="false">
 
             <TextView
-                android:id="@+id/loanLengthLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -116,7 +110,6 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radio15Button"
                     android:tag="15"
                     android:layout_width="5dp"
                     android:layout_weight="1"
@@ -124,7 +117,6 @@
                     android:text="@string/radio15Button" />
 
                 <RadioButton
-                    android:id="@+id/radio30Button"
                     android:tag="30"
                     android:layout_width="5dp"
                     android:layout_height="wrap_content"
@@ -135,12 +127,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/aprRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/aprLabel"
                 android:layout_width="177dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -159,13 +149,11 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/mortgageLabelRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal">
 
             <TextView
-                android:id="@+id/mortgageLabel"
                 android:layout_span="2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -177,7 +165,6 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/mortgageCalcRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal">
