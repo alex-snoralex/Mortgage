@@ -141,11 +141,12 @@
                 android:id="@+id/apr"
                 android:layout_width="78dp"
                 android:layout_height="wrap_content"
-                android:autofillHints=""
                 android:ems="10"
                 android:gravity="center"
                 android:inputType="numberDecimal"
-                android:text="@string/apr" />
+                android:text="@string/apr"
+                android:hint="@string/aprHint"
+                android:autofillHints="@string/aprHint"/>
         </TableRow>
 
         <TableRow
@@ -181,10 +182,6 @@
                 android:textStyle="bold" />
 
         </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
     </TableLayout>
 

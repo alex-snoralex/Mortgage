@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
      * @TODO: Clean ALL warnings
      * @TODO: Fix landscape mode
      * @TODO: Do something with 'Settings' in heading
+     * @TODO: Work on backup preferences in AndroidManifest.xml
      */
 
     private var homePrice: EditText? = null

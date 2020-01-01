@@ -28,6 +28,7 @@
     // APR
     <string name="aprLabel">APR:</string>
     <string name="apr">4.00</string>
+    <string name="aprHint">Mortgage APR</string>
 
     // Mortgage Calculation
     <string name="mortgageLabel">Monthly mortgage payment is:</string>
