@@ -13,14 +13,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-
 class MainActivity : AppCompatActivity() {
 
     /**
-     * @TODO: Update color scheme
      * @TODO: Update Icons
      * @TODO: Add commas and $ to Home Price
-     * @TODO: Remove 'Mortgage Calculator' text and add to heading
      * @TODO: lose focus on number input should work
      * @TODO: Plus button to add HOA, Mortgage insurance, Etc.
      * @TODO: Add email messaging
@@ -49,7 +46,10 @@ class MainActivity : AppCompatActivity() {
         apr = findViewById(R.id.apr)
         mortgageCalculation = findViewById(R.id.mortgageCalculation)
 
+        createListeners()
+    }
 
+    private fun createListeners(){
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
@@ -93,17 +93,16 @@ class MainActivity : AppCompatActivity() {
                 calculateMortgagePayment()
             }
         })
-
     }
 
-    fun calculateDownPayment(){
+    private fun calculateDownPayment(){
         val homePriceAValue = homePrice?.text.toString().toBigDecimal()
         val percentDown = getBigDecimal(downPaymentSpinner?.selectedItem.toString())
         val downPayment = percentDown * homePriceAValue / BigDecimal(100)
         downPaymentAmount?.text = setDollarFormat(downPayment)
     }
 
-    fun calculateMortgagePayment(){
+    private fun calculateMortgagePayment(){
         /** Formula =(B2-B8) * (D12*(1+D12)^(D11)) / (((1+D12)^D11)-1)
          * where D11 = total payments in months, D12 = APR in months
         */
