@@ -1,10 +1,17 @@
 package com.example.mortgage
 
+import androidx.core.text.isDigitsOnly
 import java.math.BigDecimal
 
 internal fun isAprValid(aprValue: String): Boolean {
     if (aprValue == "" || aprValue == "." ||
         aprValue.toBigDecimal().compareTo(BigDecimal.ZERO) == 0)
+        return false
+    return true
+}
+
+internal fun isMortgageAmountValid(mortgageAmount : String): Boolean {
+    if (mortgageAmount.isBlank() || !mortgageAmount.isDigitsOnly())
         return false
     return true
 }

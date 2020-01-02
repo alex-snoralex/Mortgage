@@ -16,7 +16,6 @@ import java.math.RoundingMode
 class MainActivity : AppCompatActivity() {
 
     /**
-     * @TODO: Update Icons
      * @TODO: Add commas and $ to Home Price
      * @TODO: lose focus on number input should work
      * @TODO: Plus button to add HOA, Mortgage insurance, Etc.
@@ -97,9 +96,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateDownPayment(){
+        if( !isMortgageAmountValid(homePrice?.text.toString())) {
+            homePrice?.error = "Enter non-zero mortgage"
+            return
+        }
+
         val homePriceAValue = homePrice?.text.toString().toBigDecimal()
         val percentDown = getBigDecimal(downPaymentSpinner?.selectedItem.toString())
         val downPayment = percentDown * homePriceAValue / BigDecimal(100)
+
         downPaymentAmount?.text = setDollarFormat(downPayment)
     }
 
@@ -108,7 +113,11 @@ class MainActivity : AppCompatActivity() {
          * where D11 = total payments in months, D12 = APR in months
         */
         if (!isAprValid(apr?.text.toString())){
-            apr?.error = "Cannot have zero APR"
+            apr?.error = "Enter non-zero APR"
+            return
+        }
+        if( !isMortgageAmountValid(homePrice?.text.toString())) {
+            homePrice?.error = "Enter non-zero mortgage"
             return
         }
 

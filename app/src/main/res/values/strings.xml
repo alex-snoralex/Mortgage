@@ -6,7 +6,7 @@
     // Home Price
     <string name="homePriceLabel">Home Price:</string>
     <integer name="homePrice">400000</integer>
-    <string name="homePriceHint">Enter the price of the home</string>
+    <string name="homePriceHint">Enter home price</string>
 
     // Down Payment
     <string name="downPaymentLabel">Down Payment:</string>
@@ -28,7 +28,7 @@
     // APR
     <string name="aprLabel">APR:</string>
     <string name="apr">4.00</string>
-    <string name="aprHint">Mortgage APR</string>
+    <string name="aprHint">Enter APR</string>
 
     // Mortgage Calculation
     <string name="mortgageLabel">Monthly mortgage payment is:</string>
