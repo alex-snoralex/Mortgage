@@ -20,9 +20,8 @@ class MainActivity : AppCompatActivity() {
      * @TODO: lose focus on number input should work
      * @TODO: Plus button to add HOA, Mortgage insurance, Etc.
      * @TODO: Add email messaging
-     * @TODO: Clean ALL warnings
      * @TODO: Fix landscape mode
-     * @TODO: Do something with 'Settings' in heading
+     * @TODO: Do something with 'Settings' in heading (text resizing)
      * @TODO: Work on backup preferences in AndroidManifest.xml
      */
 
