@@ -1,11 +1,14 @@
 package com.example.mortgage
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.View.OnFocusChangeListener
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -13,11 +16,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.math.BigDecimal
 import java.math.RoundingMode
 
+
 class MainActivity : AppCompatActivity() {
 
     /**
+     * @TODO: APR shouldn't be close to zero either
      * @TODO: Add commas and $ to Home Price
-     * @TODO: lose focus on number input should work
      * @TODO: Plus button to add HOA, Mortgage insurance, Etc.
      * @TODO: Add email messaging
      * @TODO: Fix landscape mode
@@ -39,10 +43,12 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         homePrice = findViewById(R.id.homePrice)
+        setOnFocusChangeListener(homePrice)
         downPaymentSpinner = findViewById(R.id.downPaymentSpinner)
         downPaymentAmount = findViewById(R.id.downPaymentAmount)
         loanLengthRadioGroup = findViewById(R.id.loanLengthRadioGroup)
         apr = findViewById(R.id.apr)
+        setOnFocusChangeListener(apr)
         mortgageCalculation = findViewById(R.id.mortgageCalculation)
 
         createListeners()
@@ -92,6 +98,16 @@ class MainActivity : AppCompatActivity() {
                 calculateMortgagePayment()
             }
         })
+    }
+
+    private fun setOnFocusChangeListener(editText: EditText?) {
+        // Automatically hide keyboard on focus loss
+        editText?.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(editText?.windowToken, 0)
+            }
+        }
     }
 
     private fun calculateDownPayment(){
