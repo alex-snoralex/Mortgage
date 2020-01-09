@@ -1,6 +1,5 @@
 package com.example.mortgage
 
-import androidx.core.text.isDigitsOnly
 import java.math.BigDecimal
 
 internal fun isAprValid(aprValue: String): Boolean {
@@ -11,7 +10,7 @@ internal fun isAprValid(aprValue: String): Boolean {
 }
 
 internal fun isMortgageAmountValid(mortgageAmount : String): Boolean {
-    if (mortgageAmount.isBlank() || !mortgageAmount.isDigitsOnly())
+    if (mortgageAmount.isBlank())
         return false
     return true
 }
@@ -21,6 +20,5 @@ internal fun setDollarFormat(amount: BigDecimal): String {
 }
 
 internal fun getBigDecimal(rawValue: String): BigDecimal {
-    return rawValue.replace("$", "")
-        .replace(",", "").replace("%","").toBigDecimal()
+    return rawValue.replace(Regex("""[$,%]"""), "").toBigDecimal().setScale(2,4)
 }

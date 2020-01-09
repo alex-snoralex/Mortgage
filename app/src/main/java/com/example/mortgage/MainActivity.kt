@@ -20,13 +20,15 @@ import java.math.RoundingMode
 class MainActivity : AppCompatActivity() {
 
     /**
-     * @TODO: APR shouldn't be close to zero either
-     * @TODO: Add commas and $ to Home Price
-     * @TODO: Plus button to add HOA, Mortgage insurance, Etc.
-     * @TODO: Add email messaging
-     * @TODO: Fix landscape mode
-     * @TODO: Do something with 'Settings' in heading (text resizing)
-     * @TODO: Work on backup preferences in AndroidManifest.xml
+     * TODO: APR shouldn't be close to zero either
+     * TODO: Add commas and $ to Home Price
+     * TODO: Put math calcs on a seperate thread:
+     * https://stackoverflow.com/questions/14678593/the-application-may-be-doing-too-much-work-on-its-main-thread/21126690
+     * TODO: Plus button to add HOA, Mortgage insurance, Etc.
+     * TODO: Add email messaging
+     * TODO: Fix landscape mode
+     * TODO: Do something with 'Settings' in heading (text resizing)
+     * TODO: Work on backup preferences in AndroidManifest.xml
      */
 
     private var homePrice: EditText? = null
@@ -72,6 +74,20 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 calculateDownPayment()
                 calculateMortgagePayment()
+
+                // TODO: try to put this in the afterText change. The problem is cursor goes to end
+                // of line when coded as is
+//                if(!s.toString().equals(current)){
+//                    homePrice?.removeTextChangedListener(this)
+//
+//                    val formatted = setDollarFormat(getBigDecimal(s.toString()))
+//
+////                    current = formatted
+//                    homePrice?.setText(formatted)
+//                    homePrice?.setSelection(formatted.length)
+//                    homePrice?.addTextChangedListener(this)
+//                }
+
             }
         })
 
@@ -116,7 +132,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val homePriceAValue = homePrice?.text.toString().toBigDecimal()
+        val homePriceAValue = getBigDecimal(homePrice?.text.toString())
         val percentDown = getBigDecimal(downPaymentSpinner?.selectedItem.toString())
         val downPayment = percentDown * homePriceAValue / BigDecimal(100)
 
@@ -136,7 +152,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val homePriceAValue = homePrice?.text.toString().toBigDecimal()
+        val homePriceAValue = getBigDecimal(homePrice?.text.toString())
         val downPayment = getBigDecimal(downPaymentAmount?.text.toString())
         val loanLengthInMonths = loanLength * 12
         val aprInMonths = apr?.text.toString().toBigDecimal().divide(1200.toBigDecimal(), 5, RoundingMode.HALF_EVEN)

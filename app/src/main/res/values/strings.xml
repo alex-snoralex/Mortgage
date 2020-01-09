@@ -5,7 +5,8 @@
 
     // Home Price
     <string name="homePriceLabel">Home Price:</string>
-    <integer name="homePrice">400000</integer>
+<!--    <string name="homePrice">$400,000.00</string>-->
+    <string name="homePrice">400000</string>
     <string name="homePriceHint">Enter home price</string>
 
     // Down Payment
