@@ -35,6 +35,11 @@ class CalculationTests {
     }
 
     @Test
+    fun apr_NearZeroShouldFail(){
+        assert(!isAprValid("0.001"))
+    }
+
+    @Test
     fun setDollarFormat_Control(){
         assert(setDollarFormat(BigDecimal(123456)) == "$123,456.00")
     }

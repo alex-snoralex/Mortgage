@@ -20,7 +20,6 @@ import java.math.RoundingMode
 class MainActivity : AppCompatActivity() {
 
     /**
-     * TODO: APR shouldn't be close to zero either
      * TODO: Add commas and $ to Home Price
      * TODO: Put math calcs on a seperate thread:
      * https://stackoverflow.com/questions/14678593/the-application-may-be-doing-too-much-work-on-its-main-thread/21126690
