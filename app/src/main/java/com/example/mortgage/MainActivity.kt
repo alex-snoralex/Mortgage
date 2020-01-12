@@ -11,6 +11,8 @@ import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import java.math.BigDecimal
@@ -20,13 +22,14 @@ import java.math.RoundingMode
 class MainActivity : AppCompatActivity() {
 
     /**
+     * TODO: Move Email icon
+     * TODO: Plus button to add HOA, Mortgage insurance, Etc.
+     * TODO: Email messaging
+     * TODO: Do something with 'Settings' in heading (text resizing)
      * TODO: Add commas and $ to Home Price
      * TODO: Put math calcs on a seperate thread:
      * https://stackoverflow.com/questions/14678593/the-application-may-be-doing-too-much-work-on-its-main-thread/21126690
-     * TODO: Plus button to add HOA, Mortgage insurance, Etc.
-     * TODO: Add email messaging
      * TODO: Fix landscape mode
-     * TODO: Do something with 'Settings' in heading (text resizing)
      * TODO: Work on backup preferences in AndroidManifest.xml
      */
 
@@ -37,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     private var loanLength = 30
     private var apr: EditText? = null
     private var mortgageCalculation: TextView? = null
+    private var adView: AdView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         mortgageCalculation = findViewById(R.id.mortgageCalculation)
 
         createListeners()
+        createAd()
     }
 
     private fun createListeners(){
@@ -161,6 +166,16 @@ class MainActivity : AppCompatActivity() {
                 ((BigDecimal.ONE + aprInMonths).pow(loanLengthInMonths)- BigDecimal.ONE)
 
         mortgageCalculation?.text = setDollarFormat(mortgagePayment)
+    }
+
+    private fun createAd(){
+        adView = findViewById(R.id.adView)
+
+        val adRequest = AdRequest.Builder()
+            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            .build()
+
+        adView?.loadAd(adRequest)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

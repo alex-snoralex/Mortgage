@@ -15,7 +15,6 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="459dp"
-        android:layout_marginTop="72dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:stretchColumns="*"
@@ -41,11 +40,11 @@
                 android:id="@+id/homePrice"
                 android:layout_width="137dp"
                 android:layout_height="wrap_content"
+                android:autofillHints="@string/homePriceHint"
                 android:ems="10"
                 android:fadingEdge="horizontal"
                 android:gravity="center"
                 android:hint="@string/homePriceHint"
-                android:autofillHints="@string/homePriceHint"
                 android:inputType="number"
                 android:text="@string/homePrice"
                 android:textStyle="bold"
@@ -83,9 +82,9 @@
 
             <TextView
                 android:id="@+id/downPaymentAmount"
-                android:layout_span="2"
                 android:layout_width="wrap_content"
                 android:layout_height="41dp"
+                android:layout_span="2"
                 android:gravity="center"
                 android:text="@string/downPaymentAmount"
                 android:textColor="@android:color/black"
@@ -114,19 +113,19 @@
 
                 <RadioButton
                     android:id="@+id/radio15Button"
-                    android:tag="15"
                     android:layout_width="5dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="15"
                     android:text="@string/radio15Button" />
 
                 <RadioButton
                     android:id="@+id/radio30Button"
-                    android:tag="30"
                     android:layout_width="5dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
+                    android:tag="30"
                     android:text="@string/radio30Button" />
             </RadioGroup>
         </TableRow>
@@ -146,12 +145,12 @@
                 android:id="@+id/apr"
                 android:layout_width="78dp"
                 android:layout_height="wrap_content"
+                android:autofillHints="@string/aprHint"
                 android:ems="10"
                 android:gravity="center"
-                android:inputType="numberDecimal"
-                android:text="@string/apr"
                 android:hint="@string/aprHint"
-                android:autofillHints="@string/aprHint"/>
+                android:inputType="numberDecimal"
+                android:text="@string/apr" />
         </TableRow>
 
         <TableRow
@@ -160,10 +159,10 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:layout_span="2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_span="2"
                 android:baselineAligned="false"
                 android:gravity="center"
                 android:text="@string/mortgageLabel" />
