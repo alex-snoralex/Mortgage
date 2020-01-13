@@ -1,15 +1,12 @@
 <resources>
-    //Header
-    <string name="app_name">Mortgage Calculator</string>
-    <string name="action_settings">Settings</string>
 
-    // Home Price
+    Home Price
     <string name="homePriceLabel">Home Price:</string>
 <!--    <string name="homePrice">$400,000.00</string>-->
     <string name="homePrice">400000</string>
     <string name="homePriceHint">Enter home price</string>
 
-    // Down Payment
+    Down Payment
     <string name="downPaymentLabel">Down Payment:</string>
     <string name="downPaymentAmount">NA</string>
     <string-array name="downPaymentOptions">
@@ -21,17 +18,17 @@
         <item>20%</item>
     </string-array>
 
-    // Length of Loan
+    Length of Loan
     <string name="loanLengthLabel">Length of loan:</string>
     <string name="radio15Button">15 years</string>
     <string name="radio30Button">30 years</string>
 
-    // APR
+    APR
     <string name="aprLabel">APR:</string>
     <string name="apr">4.00</string>
     <string name="aprHint">Enter APR</string>
 
-    // Mortgage Calculation
+    Mortgage Calculation
     <string name="mortgageLabel">Monthly mortgage payment is:</string>
     <string name="mortgageCalculation">NA</string>
 

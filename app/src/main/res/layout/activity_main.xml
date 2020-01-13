@@ -17,12 +17,12 @@
         app:layout_anchorGravity="center" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_right_margin"
-        android:layout_marginBottom="@dimen/fab_bottom_margin"
+        android:layout_marginEnd="@dimen/email_right_margin"
+        android:layout_marginBottom="@dimen/email_bottom_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
     <com.google.android.material.appbar.AppBarLayout

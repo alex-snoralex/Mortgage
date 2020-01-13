@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    Header
+    <string name="app_name">Mortgage Calculator</string>
+    <string name="action_settings">Settings</string>
+
+    Menu Colors
+    <color name="colorPrimary">#41F08B72</color>
+    <color name="colorPrimaryDark">#41201D</color>
+    <color name="colorAccent">#E2CDD0</color>
+
+    Email dimensions
+    <dimen name="email_right_margin">16dp</dimen>
+    <dimen name="email_bottom_margin">60dp</dimen>
+
+</resources>
