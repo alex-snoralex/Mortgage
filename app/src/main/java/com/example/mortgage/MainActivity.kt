@@ -22,7 +22,6 @@ import java.math.RoundingMode
 class MainActivity : AppCompatActivity() {
 
     /**
-     * TODO: Move Email icon
      * TODO: Plus button to add HOA, Mortgage insurance, Etc.
      * TODO: Email messaging
      * TODO: Do something with 'Settings' in heading (text resizing)
